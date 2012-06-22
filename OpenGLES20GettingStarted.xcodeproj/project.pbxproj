@@ -18,6 +18,8 @@
 		46E377A41593E6EC0027D0E5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E377A31593E6EC0027D0E5 /* QuartzCore.framework */; };
 		46E377A61593E70D0027D0E5 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E377A51593E70D0027D0E5 /* OpenGLES.framework */; };
 		46E377A91593F4570027D0E5 /* OGL11Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E377A81593F4570027D0E5 /* OGL11Renderer.m */; };
+		46E377AE1593FAC70027D0E5 /* GenericProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E377AD1593FAC70027D0E5 /* GenericProvider.m */; };
+		46E377B215940FD60027D0E5 /* PrimativeBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46E377B115940FD60027D0E5 /* PrimativeBuffer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,12 @@
 		46E377A71593F4570027D0E5 /* OGL11Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGL11Renderer.h; sourceTree = "<group>"; };
 		46E377A81593F4570027D0E5 /* OGL11Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGL11Renderer.m; sourceTree = "<group>"; };
 		46E377AA1593F49E0027D0E5 /* RenderConsumer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderConsumer.h; sourceTree = "<group>"; };
+		46E377AB1593FA590027D0E5 /* RenderProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderProvider.h; sourceTree = "<group>"; };
+		46E377AC1593FAC70027D0E5 /* GenericProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericProvider.h; sourceTree = "<group>"; };
+		46E377AD1593FAC70027D0E5 /* GenericProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericProvider.m; sourceTree = "<group>"; };
+		46E377AF159405690027D0E5 /* RenderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RenderTypes.h; sourceTree = "<group>"; };
+		46E377B015940FD60027D0E5 /* PrimativeBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrimativeBuffer.h; sourceTree = "<group>"; };
+		46E377B115940FD60027D0E5 /* PrimativeBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrimativeBuffer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +69,6 @@
 		46E377771593E0F90027D0E5 = {
 			isa = PBXGroup;
 			children = (
-				46E377A51593E70D0027D0E5 /* OpenGLES.framework */,
-				46E377A31593E6EC0027D0E5 /* QuartzCore.framework */,
 				46E3778C1593E0F90027D0E5 /* OpenGLES20GettingStarted */,
 				46E377851593E0F90027D0E5 /* Frameworks */,
 				46E377831593E0F90027D0E5 /* Products */,
@@ -80,9 +86,11 @@
 		46E377851593E0F90027D0E5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				46E377861593E0F90027D0E5 /* UIKit.framework */,
-				46E377881593E0F90027D0E5 /* Foundation.framework */,
 				46E3778A1593E0F90027D0E5 /* CoreGraphics.framework */,
+				46E377881593E0F90027D0E5 /* Foundation.framework */,
+				46E377A51593E70D0027D0E5 /* OpenGLES.framework */,
+				46E377A31593E6EC0027D0E5 /* QuartzCore.framework */,
+				46E377861593E0F90027D0E5 /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -92,13 +100,19 @@
 			children = (
 				46E377951593E0F90027D0E5 /* AppDelegate.h */,
 				46E377961593E0F90027D0E5 /* AppDelegate.m */,
+				46E377AC1593FAC70027D0E5 /* GenericProvider.h */,
+				46E377AD1593FAC70027D0E5 /* GenericProvider.m */,
 				46E3779D1593E2170027D0E5 /* GenericRenderer.h */,
 				46E3779E1593E2170027D0E5 /* GenericRenderer.m */,
 				46E377A01593E2D80027D0E5 /* GLView.h */,
 				46E377A11593E2D80027D0E5 /* GLView.m */,
 				46E377A71593F4570027D0E5 /* OGL11Renderer.h */,
 				46E377A81593F4570027D0E5 /* OGL11Renderer.m */,
+				46E377B015940FD60027D0E5 /* PrimativeBuffer.h */,
+				46E377B115940FD60027D0E5 /* PrimativeBuffer.m */,
 				46E377AA1593F49E0027D0E5 /* RenderConsumer.h */,
+				46E377AB1593FA590027D0E5 /* RenderProvider.h */,
+				46E377AF159405690027D0E5 /* RenderTypes.h */,
 				46E3778D1593E0F90027D0E5 /* Supporting Files */,
 			);
 			path = OpenGLES20GettingStarted;
@@ -181,6 +195,8 @@
 				46E3779F1593E2170027D0E5 /* GenericRenderer.m in Sources */,
 				46E377A21593E2D80027D0E5 /* GLView.m in Sources */,
 				46E377A91593F4570027D0E5 /* OGL11Renderer.m in Sources */,
+				46E377AE1593FAC70027D0E5 /* GenericProvider.m in Sources */,
+				46E377B215940FD60027D0E5 /* PrimativeBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,7 +233,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -235,7 +251,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -284,6 +300,7 @@
 				46E3779C1593E0F90027D0E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

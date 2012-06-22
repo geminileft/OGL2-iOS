@@ -7,6 +7,9 @@
 //
 
 #import "OGL11Renderer.h"
+#import "RenderTypes.h"
+#import "PrimativeBuffer.h"
+
 #import <QuartzCore/QuartzCore.h>
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
@@ -55,7 +58,7 @@
         
         //required for vertex/textures
         glEnableClientState(GL_VERTEX_ARRAY);
-        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        //glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         
         glViewport(0, 0, mWidth, mHeight);
         
@@ -72,19 +75,103 @@
         glMatrixMode(GL_MODELVIEW);
         glLoadIdentity();
         if (!useOrtho) {
-            glTranslatef(-mWidth / 2, -mHeight / 2, -zDepth);
+            glTranslatef(0.0f, 0.0f, -zDepth);
         }
         
         CADisplayLink *aDisplayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(run)];
         [aDisplayLink setFrameInterval:1];
         [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        [mProvider renderInitialized];
+        mBackBuffer = [[PrimativeBuffer alloc] init];
+        mPrimBuffer = [[NSMutableDictionary alloc] init];
+		[mPrimBuffer setValue:[[PrimativeBuffer alloc] init] forKey:@"polygon"];
+		[mPrimBuffer setValue:[[PrimativeBuffer alloc] init] forKey:@"texture"];
     }
     
     return self;
 }
 
 -(void) run {
+    //TextureManager texMgr = TextureManager.sharedManager();
+    //texMgr.loadTextures();
+    [self copyToBuffer];
+    
     glClear(GL_COLOR_BUFFER_BIT);
+    //textureRender(gl, mPrimBuffer.get(PrimativeType.TexPrimative));
+    [self polygonRender:[mPrimBuffer objectForKey:@"polygon"]];
+
     [mContext presentRenderbuffer:GL_RENDERBUFFER];
 }
+
+-(void) polygonRender:(PrimativeBuffer*) buffer {
+    const int size = buffer->mTop;
+    for (int i = 0;i < size;++i) {
+        RenderPrimative primative = [buffer get:i];
+        glVertexPointer(2, GL_FLOAT, 0, primative.mVertexBuffer);
+        glColor4f(primative.mR, primative.mG, primative.mB, primative.mA);
+        
+        glPushMatrix();
+        glTranslatef(primative.mX, primative.mY, 0.0f);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        glPopMatrix();
+    }
+}
+
+/*
+-(void) polygonRender {
+    const int width = 160;
+    const int height = 160;
+    const float leftX = -(float)width / 2;
+    const float rightX = leftX + width;
+    const float bottomY = -(float)height / 2;
+    const float topY = bottomY + height;
+    
+    const float vertices[] = {
+        leftX, bottomY
+        , leftX, topY
+        , rightX, bottomY
+        , rightX, topY
+    };
+    
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glVertexPointer(2, GL_FLOAT, 0, &vertices[0]);
+    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+    
+    glPushMatrix();
+    glTranslatef(0.0f, 0.0f, 0.0f);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    glPopMatrix();
+}
+*/
+
+-(void) setRenderProvider:(id<RenderProvider>) provider {
+    mProvider = [provider retain];
+    [mProvider renderInitialized];
+}
+
+-(void) copyToBuffer {
+    @synchronized(mBackBuffer) {
+        mBackBuffer->mTop = 0;
+        [mProvider copyToBuffer:mBackBuffer];
+        @synchronized(mPrimBuffer) {
+            for (NSString* key in [mPrimBuffer allKeys]) {
+                ((PrimativeBuffer*)[mPrimBuffer objectForKey:key])->mTop = 0;
+            }
+            
+            int size = mBackBuffer->mTop;
+            for (int i = 0;i < size;++i) {
+                RenderPrimative primative = [mBackBuffer get:i];
+                NSString* ptype;
+                if (primative.mTextureBuffer == NULL) {
+                    ptype = @"polygon";
+                } else {
+                    ptype = @"texture";
+                }
+                [((PrimativeBuffer*)[mPrimBuffer objectForKey:ptype]) add:primative];
+            }
+        }
+    }
+}
+
 @end

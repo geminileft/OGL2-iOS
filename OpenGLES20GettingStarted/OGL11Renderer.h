@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RenderConsumer.h"
+#import "RenderProvider.h"
 
 @interface OGL11Renderer : NSObject<RenderConsumer> {
 @private
@@ -16,8 +17,13 @@
     unsigned int mRenderBuffer;
     int mWidth;
     int mHeight;
+    id<RenderProvider> mProvider;
+    PrimativeBuffer* mBackBuffer;
+	NSDictionary* mPrimBuffer;
 }
 
 -(id) initWithLayer:(CALayer*) layer;
+-(void) polygonRender:(PrimativeBuffer*) buffer;
+-(void) copyToBuffer;
 
 @end

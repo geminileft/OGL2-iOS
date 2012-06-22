@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RenderConsumer.h"
+#import "RenderProvider.h"
 
 @class GLView;
 
@@ -19,6 +20,6 @@
 
 @property (nonatomic, readonly) GLView* view;
 
--(void) run;
+-(void) setRenderProvider:(id<RenderProvider>) provider;
 
 @end

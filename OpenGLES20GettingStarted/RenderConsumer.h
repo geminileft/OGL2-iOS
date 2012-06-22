@@ -7,13 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@class RenderProvider;
+#import "RenderProvider.h"
 
 @protocol RenderConsumer
 
 @required
 -(void) run;
--(void) setRenderProvider:(RenderProvider*) provider;
+-(void) setRenderProvider:(id<RenderProvider>) provider;
 
 @end

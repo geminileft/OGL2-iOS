@@ -12,20 +12,23 @@
 
 @implementation GenericRenderer
 
-@synthesize view = mView;
-
 -(id) init {
     self = [super init];
     if (self) {
-        CGRect frame = [[UIScreen mainScreen] bounds];
-        //[mWindow setBackgroundColor:[UIColor redColor]];
-        
+        CGRect frame = [[UIScreen mainScreen] bounds];        
         mView = [[GLView alloc] initWithFrame:frame];
         mConsumer = [[OGL11Renderer alloc] initWithLayer:mView.layer];
-        
     }
     
     return self;
+}
+
+-(GLView*) view {
+    return mView;
+}
+
+-(void) setRenderProvider:(id<RenderProvider>) provider {
+    [mConsumer setRenderProvider:provider];
 }
 
 @end

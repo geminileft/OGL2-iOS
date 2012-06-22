@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "GLView.h"
 #import "GenericRenderer.h"
+#import "GenericProvider.h"
 
 @implementation AppDelegate
 
@@ -23,7 +24,8 @@
     mWindow = [[UIWindow alloc] initWithFrame:frame];
     UIViewController* vc = [[UIViewController alloc] init];
     mRenderer = [[GenericRenderer alloc] init];
-    
+    GenericProvider* provider = [[GenericProvider alloc] init];
+    [mRenderer setRenderProvider:provider];
     vc.view = mRenderer.view;
     mWindow.rootViewController = vc;
 
