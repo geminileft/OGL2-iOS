@@ -8,14 +8,6 @@
 
 #include "RenderTypes.h"
 
-struct TEShaderData {
-    PrimativeType type;
-    RenderPrimative* primatives;
-    uint primativeCount;
-};
-
-typedef struct TEShaderData TEShaderData;
-
 @interface RenderTarget : NSObject {
 @private
     unsigned int mFrameBuffer;
@@ -24,7 +16,6 @@ typedef struct TEShaderData TEShaderData;
     float mProjMatrix[16];
     float mViewMatrix[16];
     NSMutableDictionary* mShaders;
-    TEShaderData* mShaderData;
 }
 
 -(id) initWithFrameBuffer:(unsigned int) frameBuffer;
@@ -32,12 +23,9 @@ typedef struct TEShaderData TEShaderData;
 -(unsigned int) getFrameBuffer;
 -(float) getFrameWidth;
 -(float) getFrameHeight;
--(void) addPrimative:(RenderPrimative) primative;
--(void) resetPrimatives;
 -(void) activate;
 -(float*) getProjMatrix;
 -(float*) getViewMatrix;
--(TEShaderData*) getShaderData:(unsigned int) count;
 
 @end
 

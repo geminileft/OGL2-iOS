@@ -76,16 +76,4 @@
     matrix[15] = 1;    
 }
 
-+(void) multiply:(float*) matrix a:(float*) a b:(float*) b {
-    for (int row = 0;row < 4; ++row) {
-        for (int col = 0;col < 4; ++col) {
-            matrix[col * 4 + row] = 0;
-            for (int i = 0;i < 4; ++i) {
-                matrix[col * 4 + row] += a[row * 4 + i] * b[i * 4 + col];
-            }
-        }
-    }
-}
-
-
 @end
