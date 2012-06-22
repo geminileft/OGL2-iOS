@@ -10,6 +10,7 @@
 #include "RenderTypes.h"
 
 @class RenderTarget;
+@class PrimativeBuffer;
 
 @interface RenderProgram : NSObject {
 @private
@@ -22,7 +23,7 @@
 -(void) addAttribute:(NSString*) attribute;
 -(unsigned int) activate:(RenderTarget*) target;
 -(void) deactivate;
--(void) run:(RenderTarget*) target primatives:(RenderPrimative*) primatives count:(unsigned int) primativeCount;
+-(void) run:(RenderTarget*) target primatives:(PrimativeBuffer*) primatives;
 -(unsigned int) getProgramId;
 
 @end

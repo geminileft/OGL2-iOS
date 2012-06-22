@@ -24,10 +24,14 @@
     NSDictionary* mPrimBuffer;
     unsigned int mScreenFrameBuffer;
     RenderTarget* mScreenTarget;
+    NSMutableDictionary* mShaderPrograms;
 }
 
 -(id) initWithLayer:(CALayer*) layer;
 -(void) polygonRender:(PrimativeBuffer*) buffer;
 -(void) textureRender:(PrimativeBuffer*) buffer;
 -(void) copyToBuffer;
+-(void) createPrograms;
+-(void) runTargetShaders:(RenderTarget*) target;
+
 @end

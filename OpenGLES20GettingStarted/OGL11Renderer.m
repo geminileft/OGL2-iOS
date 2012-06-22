@@ -97,7 +97,7 @@
     
     glClear(GL_COLOR_BUFFER_BIT);
     [self textureRender:[mPrimBuffer objectForKey:@"texture"]];
-    //[self polygonRender:[mPrimBuffer objectForKey:@"polygon"]];
+    [self polygonRender:[mPrimBuffer objectForKey:@"polygon"]];
 
     [mContext presentRenderbuffer:GL_RENDERBUFFER];
 }

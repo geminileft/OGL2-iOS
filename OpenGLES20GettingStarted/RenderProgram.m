@@ -82,6 +82,6 @@
     return mProgramId;
 }
 
--(void) run:(RenderTarget*) target primatives:(RenderPrimative*) primatives count:(unsigned int) primativeCount {}
+-(void) run:(RenderTarget*) target primatives:(PrimativeBuffer*) primatives {}
 
 @end

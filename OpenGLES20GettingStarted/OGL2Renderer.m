@@ -11,6 +11,10 @@
 #import "PrimativeBuffer.h"
 #import "TextureManager.h"
 #import "RenderTarget.h"
+#import "RenderProgram.h"
+#import "ManagerFile.h"
+#import "RenderTexture.h"
+#import "RenderPolygon.h"
 
 #import <QuartzCore/QuartzCore.h>
 #include <OpenGLES/ES1/gl.h>
@@ -56,7 +60,9 @@
         mPrimBuffer = [[NSMutableDictionary alloc] init];
 		[mPrimBuffer setValue:[[PrimativeBuffer alloc] init] forKey:@"polygon"];
 		[mPrimBuffer setValue:[[PrimativeBuffer alloc] init] forKey:@"texture"];
-
+        mShaderPrograms = [[NSMutableDictionary alloc] init];
+        
+        [self createPrograms];
         CADisplayLink *aDisplayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(run)];
         [aDisplayLink setFrameInterval:1];
         [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -70,11 +76,33 @@
     //[texMgr loadTextures];
     [self copyToBuffer];
     
-    glClear(GL_COLOR_BUFFER_BIT);
+    RenderTarget* rt;    
+    rt = mScreenTarget;
+    glClearColor(0.5f, 0.5f, 0.5f, 1.0f);
+    
+    [self runTargetShaders:rt];
+    
     //[self textureRender:[mPrimBuffer objectForKey:@"texture"]];
     //[self polygonRender:[mPrimBuffer objectForKey:@"polygon"]];
     
     [mContext presentRenderbuffer:GL_RENDERBUFFER];
+}
+
+
+-(void) runTargetShaders:(RenderTarget*) target {
+    RenderProgram* rp;
+    
+    [target activate];
+    glClear(GL_COLOR_BUFFER_BIT);
+    for (NSString* sType in mPrimBuffer) {
+        rp = [mShaderPrograms objectForKey:sType];
+        if (rp != nil) {
+            [rp activate:target];
+            [rp run:target primatives:[mPrimBuffer objectForKey:sType]];
+        } else {
+            NSLog(@"Hrm.");
+        }
+    }
 }
 
 -(void) polygonRender:(PrimativeBuffer*) buffer {
@@ -111,34 +139,6 @@
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
-
-/*
- -(void) polygonRender {
- const int width = 160;
- const int height = 160;
- const float leftX = -(float)width / 2;
- const float rightX = leftX + width;
- const float bottomY = -(float)height / 2;
- const float topY = bottomY + height;
- 
- const float vertices[] = {
- leftX, bottomY
- , leftX, topY
- , rightX, bottomY
- , rightX, topY
- };
- 
- glEnableClientState(GL_VERTEX_ARRAY);
- glVertexPointer(2, GL_FLOAT, 0, &vertices[0]);
- glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
- 
- glPushMatrix();
- glTranslatef(0.0f, 0.0f, 0.0f);
- glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
- glPopMatrix();
- }
- */
-
 -(void) setRenderProvider:(id<RenderProvider>) provider {
     mProvider = [provider retain];
     [mProvider renderInitialized:mContext];
@@ -171,4 +171,25 @@
 -(void) setScreenFrameBuffer:(unsigned int) screenFrameBuffer {
     mScreenFrameBuffer = screenFrameBuffer;
 }
+
+-(void) createPrograms {
+    NSString* vertexSource;
+    NSString* fragmentSource;
+    RenderProgram* rp;
+    
+    vertexSource = [ManagerFile readFileContents:@"texture.vs"];
+    fragmentSource = [ManagerFile readFileContents:@"texture.fs"];
+    rp = [[RenderTexture alloc] initWithVertexSource:vertexSource fragmentSource:fragmentSource];
+    [mShaderPrograms setObject:rp forKey:@"texture"];
+    [rp addAttribute:@"aVertices"];
+    [rp addAttribute:@"aTextureCoords"];
+    
+    vertexSource = [ManagerFile readFileContents:@"colorbox.vs"];
+    fragmentSource = [ManagerFile readFileContents:@"colorbox.fs"];
+    rp = [[RenderPolygon alloc] initWithVertexSource:vertexSource fragmentSource:fragmentSource];
+    [mShaderPrograms setObject:rp forKey:@"polygon"];
+    [rp addAttribute:@"aVertices"];
+    [rp addAttribute:@"aColor"];
+}
+
 @end

@@ -15,6 +15,11 @@
 		46696F3D1594DC9000D5C8F2 /* RenderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 46696F3C1594DC9000D5C8F2 /* RenderProgram.m */; };
 		46696F401594E10200D5C8F2 /* RenderPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 46696F3F1594E10200D5C8F2 /* RenderPolygon.m */; };
 		46696F431594E22A00D5C8F2 /* RenderTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 46696F421594E22A00D5C8F2 /* RenderTexture.m */; };
+		46696F461594E3C900D5C8F2 /* ManagerFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 46696F451594E3C900D5C8F2 /* ManagerFile.m */; };
+		46696F4B1594E6AF00D5C8F2 /* colorbox.fs in Resources */ = {isa = PBXBuildFile; fileRef = 46696F471594E6AF00D5C8F2 /* colorbox.fs */; };
+		46696F4C1594E6AF00D5C8F2 /* colorbox.vs in Resources */ = {isa = PBXBuildFile; fileRef = 46696F481594E6AF00D5C8F2 /* colorbox.vs */; };
+		46696F4D1594E6AF00D5C8F2 /* texture.fs in Resources */ = {isa = PBXBuildFile; fileRef = 46696F491594E6AF00D5C8F2 /* texture.fs */; };
+		46696F4E1594E6AF00D5C8F2 /* texture.vs in Resources */ = {isa = PBXBuildFile; fileRef = 46696F4A1594E6AF00D5C8F2 /* texture.vs */; };
 		46E377871593E0F90027D0E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E377861593E0F90027D0E5 /* UIKit.framework */; };
 		46E377891593E0F90027D0E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E377881593E0F90027D0E5 /* Foundation.framework */; };
 		46E3778B1593E0F90027D0E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E3778A1593E0F90027D0E5 /* CoreGraphics.framework */; };
@@ -46,6 +51,12 @@
 		46696F3F1594E10200D5C8F2 /* RenderPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderPolygon.m; sourceTree = "<group>"; };
 		46696F411594E22A00D5C8F2 /* RenderTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderTexture.h; sourceTree = "<group>"; };
 		46696F421594E22A00D5C8F2 /* RenderTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderTexture.m; sourceTree = "<group>"; };
+		46696F441594E3C900D5C8F2 /* ManagerFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerFile.h; sourceTree = "<group>"; };
+		46696F451594E3C900D5C8F2 /* ManagerFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ManagerFile.m; sourceTree = "<group>"; };
+		46696F471594E6AF00D5C8F2 /* colorbox.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = colorbox.fs; sourceTree = "<group>"; };
+		46696F481594E6AF00D5C8F2 /* colorbox.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = colorbox.vs; sourceTree = "<group>"; };
+		46696F491594E6AF00D5C8F2 /* texture.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture.fs; sourceTree = "<group>"; };
+		46696F4A1594E6AF00D5C8F2 /* texture.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = texture.vs; sourceTree = "<group>"; };
 		46E377821593E0F90027D0E5 /* OpenGLES20GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLES20GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E377861593E0F90027D0E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		46E377881593E0F90027D0E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -151,6 +162,8 @@
 				46E3778D1593E0F90027D0E5 /* Supporting Files */,
 				46696F411594E22A00D5C8F2 /* RenderTexture.h */,
 				46696F421594E22A00D5C8F2 /* RenderTexture.m */,
+				46696F441594E3C900D5C8F2 /* ManagerFile.h */,
+				46696F451594E3C900D5C8F2 /* ManagerFile.m */,
 			);
 			path = OpenGLES20GettingStarted;
 			sourceTree = "<group>";
@@ -158,6 +171,10 @@
 		46E3778D1593E0F90027D0E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				46696F471594E6AF00D5C8F2 /* colorbox.fs */,
+				46696F481594E6AF00D5C8F2 /* colorbox.vs */,
+				46696F491594E6AF00D5C8F2 /* texture.fs */,
+				46696F4A1594E6AF00D5C8F2 /* texture.vs */,
 				4666F63C1594449500ECBFD3 /* mg.png */,
 				46E3778E1593E0F90027D0E5 /* OpenGLES20GettingStarted-Info.plist */,
 				46E3778F1593E0F90027D0E5 /* InfoPlist.strings */,
@@ -218,6 +235,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				46E377911593E0F90027D0E5 /* InfoPlist.strings in Resources */,
+				46696F4B1594E6AF00D5C8F2 /* colorbox.fs in Resources */,
+				46696F4C1594E6AF00D5C8F2 /* colorbox.vs in Resources */,
+				46696F4D1594E6AF00D5C8F2 /* texture.fs in Resources */,
+				46696F4E1594E6AF00D5C8F2 /* texture.vs in Resources */,
 				4666F63D1594449500ECBFD3 /* mg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,6 +264,7 @@
 				46696F3D1594DC9000D5C8F2 /* RenderProgram.m in Sources */,
 				46696F401594E10200D5C8F2 /* RenderPolygon.m in Sources */,
 				46696F431594E22A00D5C8F2 /* RenderTexture.m in Sources */,
+				46696F461594E3C900D5C8F2 /* ManagerFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
