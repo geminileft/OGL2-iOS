@@ -13,6 +13,12 @@
 
 @implementation GenericRenderer
 
+-(void) dealloc {
+    [mView release];
+    [mConsumer release];
+    [super dealloc];
+}
+
 -(id) init {
     self = [super init];
     if (self) {

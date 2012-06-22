@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RenderProvider.h"
 
-@protocol RenderConsumer
+@protocol RenderConsumer <NSObject>
 
 @required
 -(void) run;

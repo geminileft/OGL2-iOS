@@ -14,6 +14,11 @@
 #include "UtilMatrix.h"
 #include "RenderTarget.h"
 
+-(void) dealloc {
+    [mAttributes release];
+    [super dealloc];
+}
+
 -(id) initWithVertexSource:(NSString*) vertexSource fragmentSource:(NSString*) fragmentSource {
     self = [super init];
     if (self) {

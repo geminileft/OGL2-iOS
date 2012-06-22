@@ -14,11 +14,15 @@
 
 static TextureManager* mSharedManager = nil;
 
+-(void) dealloc {
+    [mTextures release];
+    [super dealloc];
+}
+
 -(id) init {
     self = [super init];
     if (self) {
         mTextures = [[NSMutableDictionary alloc] init];
-        mTexturePrimatives = [[NSMutableDictionary alloc] init];
     }
     return self;
 }

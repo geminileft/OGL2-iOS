@@ -12,6 +12,11 @@
 
 @implementation PrimativeBuffer
 
+-(void) dealloc {
+    free(mRenderPrimatives);
+    [super dealloc];
+}
+
 -(id) init {
     self  = [super init];
     if (self) {

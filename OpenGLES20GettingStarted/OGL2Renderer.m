@@ -24,6 +24,15 @@
 
 @implementation OGL2Renderer
 
+-(void) dealloc {
+    [mContext release];
+    [mBackBuffer release];
+    [mPrimBuffer release];
+    [mScreenTarget release];
+    [mShaderPrograms release];
+    [super dealloc];
+}
+
 -(id) initWithLayer:(CALayer *)layer {
     
     self = [super init];
@@ -109,8 +118,7 @@
 
 -(void) setRenderProvider:(id<RenderProvider>) provider {
     mProvider = [provider retain];
-    EAGLContext* context = [[EAGLContext alloc] initWithAPI:[mContext API] sharegroup:mContext.sharegroup];
-    [mProvider renderInitialized:context];
+    [mProvider renderInitialized];
 }
 
 -(void) copyToBuffer {
@@ -134,7 +142,6 @@
                 [((PrimativeBuffer*)[mPrimBuffer objectForKey:ptype]) add:primative];
             }
         }
-        //[((PrimativeBuffer*)[mPrimBuffer objectForKey:@"texture"]) add:mTexPrimative];
     }
 }
 
@@ -150,16 +157,18 @@
     vertexSource = [ManagerFile readFileContents:@"texture.vs"];
     fragmentSource = [ManagerFile readFileContents:@"texture.fs"];
     rp = [[RenderTexture alloc] initWithVertexSource:vertexSource fragmentSource:fragmentSource];
-    [mShaderPrograms setObject:rp forKey:@"texture"];
     [rp addAttribute:@"aVertices"];
     [rp addAttribute:@"aTextureCoords"];
+    [mShaderPrograms setObject:rp forKey:@"texture"];
     
     vertexSource = [ManagerFile readFileContents:@"colorbox.vs"];
     fragmentSource = [ManagerFile readFileContents:@"colorbox.fs"];
     rp = [[RenderPolygon alloc] initWithVertexSource:vertexSource fragmentSource:fragmentSource];
-    [mShaderPrograms setObject:rp forKey:@"polygon"];
     [rp addAttribute:@"aVertices"];
     [rp addAttribute:@"aColor"];
+    [mShaderPrograms setObject:rp forKey:@"polygon"];
+    
+    [rp release];
 }
 
 @end

@@ -17,7 +17,6 @@
 @interface TextureManager : NSObject {
 @private
     NSMutableDictionary* mTextures;
-    NSMutableDictionary* mTexturePrimatives;
 }
 
 +(TextureManager*) sharedManager;

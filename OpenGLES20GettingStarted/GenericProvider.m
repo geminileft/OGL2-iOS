@@ -4,6 +4,13 @@
 
 @implementation GenericProvider
 
+-(void) dealloc {
+    [mCopyBuffer release];
+	[mPrimatives release];
+
+    [super dealloc];
+}
+
 -(void) initialize {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -56,7 +63,6 @@
 }
 
 -(void) run {
-    [EAGLContext setCurrentContext:mContext];
     [self initialize];
     while (true) {
         mPrimatives->mTop = 0;
@@ -91,10 +97,10 @@
     }
 }
 
--(void) renderInitialized:(EAGLContext*) context {
+-(void) renderInitialized {
     NSThread* thread = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
     [thread start];
-    mContext = [context retain];
+    [thread release];
 }
 
 @end

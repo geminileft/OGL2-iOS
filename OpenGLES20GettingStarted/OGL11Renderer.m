@@ -20,6 +20,13 @@
 
 @implementation OGL11Renderer
 
+-(void) dealloc {
+    [mContext release];
+    [mBackBuffer release];
+	[mPrimBuffer release];
+    [super dealloc];
+}
+
 -(id) initWithLayer:(CALayer *)layer {
     self = [super init];
     if (self) {                
@@ -142,7 +149,7 @@
 
 -(void) setRenderProvider:(id<RenderProvider>) provider {
     mProvider = [provider retain];
-    [mProvider renderInitialized:mContext];
+    [mProvider renderInitialized];
 }
 
 -(void) copyToBuffer {

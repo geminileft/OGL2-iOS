@@ -5,6 +5,11 @@
 
 @implementation RenderTarget
 
+-(void) dealloc {
+    [mShaders release];
+    [super dealloc];
+}
+
 -(id) initWithFrameBuffer:(unsigned int) frameBuffer {
     self = [super init];
     if (self) {
