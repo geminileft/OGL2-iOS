@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		4666F63B1594422900ECBFD3 /* TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4666F63A1594422900ECBFD3 /* TextureManager.m */; };
 		4666F63D1594449500ECBFD3 /* mg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4666F63C1594449500ECBFD3 /* mg.png */; };
+		46696F331594CDAA00D5C8F2 /* OGL2Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 46696F321594CDAA00D5C8F2 /* OGL2Renderer.m */; };
+		46696F371594D0B200D5C8F2 /* RenderTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 46696F361594D0B200D5C8F2 /* RenderTarget.m */; };
+		46696F3A1594D3A800D5C8F2 /* UtilMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 46696F391594D3A700D5C8F2 /* UtilMatrix.m */; };
+		46696F3D1594DC9000D5C8F2 /* RenderProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = 46696F3C1594DC9000D5C8F2 /* RenderProgram.m */; };
+		46696F401594E10200D5C8F2 /* RenderPolygon.m in Sources */ = {isa = PBXBuildFile; fileRef = 46696F3F1594E10200D5C8F2 /* RenderPolygon.m */; };
+		46696F431594E22A00D5C8F2 /* RenderTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 46696F421594E22A00D5C8F2 /* RenderTexture.m */; };
 		46E377871593E0F90027D0E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E377861593E0F90027D0E5 /* UIKit.framework */; };
 		46E377891593E0F90027D0E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E377881593E0F90027D0E5 /* Foundation.framework */; };
 		46E3778B1593E0F90027D0E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E3778A1593E0F90027D0E5 /* CoreGraphics.framework */; };
@@ -28,6 +34,18 @@
 		4666F6391594422900ECBFD3 /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
 		4666F63A1594422900ECBFD3 /* TextureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureManager.m; sourceTree = "<group>"; };
 		4666F63C1594449500ECBFD3 /* mg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mg.png; sourceTree = "<group>"; };
+		46696F311594CDAA00D5C8F2 /* OGL2Renderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OGL2Renderer.h; sourceTree = "<group>"; };
+		46696F321594CDAA00D5C8F2 /* OGL2Renderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OGL2Renderer.m; sourceTree = "<group>"; };
+		46696F351594D0B200D5C8F2 /* RenderTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderTarget.h; sourceTree = "<group>"; };
+		46696F361594D0B200D5C8F2 /* RenderTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderTarget.m; sourceTree = "<group>"; };
+		46696F381594D3A700D5C8F2 /* UtilMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilMatrix.h; sourceTree = "<group>"; };
+		46696F391594D3A700D5C8F2 /* UtilMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilMatrix.m; sourceTree = "<group>"; };
+		46696F3B1594DC9000D5C8F2 /* RenderProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderProgram.h; sourceTree = "<group>"; };
+		46696F3C1594DC9000D5C8F2 /* RenderProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderProgram.m; sourceTree = "<group>"; };
+		46696F3E1594E10200D5C8F2 /* RenderPolygon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderPolygon.h; sourceTree = "<group>"; };
+		46696F3F1594E10200D5C8F2 /* RenderPolygon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderPolygon.m; sourceTree = "<group>"; };
+		46696F411594E22A00D5C8F2 /* RenderTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderTexture.h; sourceTree = "<group>"; };
+		46696F421594E22A00D5C8F2 /* RenderTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RenderTexture.m; sourceTree = "<group>"; };
 		46E377821593E0F90027D0E5 /* OpenGLES20GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLES20GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E377861593E0F90027D0E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		46E377881593E0F90027D0E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -120,7 +138,19 @@
 				46E377AF159405690027D0E5 /* RenderTypes.h */,
 				4666F6391594422900ECBFD3 /* TextureManager.h */,
 				4666F63A1594422900ECBFD3 /* TextureManager.m */,
+				46696F311594CDAA00D5C8F2 /* OGL2Renderer.h */,
+				46696F321594CDAA00D5C8F2 /* OGL2Renderer.m */,
+				46696F351594D0B200D5C8F2 /* RenderTarget.h */,
+				46696F361594D0B200D5C8F2 /* RenderTarget.m */,
+				46696F381594D3A700D5C8F2 /* UtilMatrix.h */,
+				46696F391594D3A700D5C8F2 /* UtilMatrix.m */,
+				46696F3B1594DC9000D5C8F2 /* RenderProgram.h */,
+				46696F3C1594DC9000D5C8F2 /* RenderProgram.m */,
+				46696F3E1594E10200D5C8F2 /* RenderPolygon.h */,
+				46696F3F1594E10200D5C8F2 /* RenderPolygon.m */,
 				46E3778D1593E0F90027D0E5 /* Supporting Files */,
+				46696F411594E22A00D5C8F2 /* RenderTexture.h */,
+				46696F421594E22A00D5C8F2 /* RenderTexture.m */,
 			);
 			path = OpenGLES20GettingStarted;
 			sourceTree = "<group>";
@@ -207,6 +237,12 @@
 				46E377AE1593FAC70027D0E5 /* GenericProvider.m in Sources */,
 				46E377B215940FD60027D0E5 /* PrimativeBuffer.m in Sources */,
 				4666F63B1594422900ECBFD3 /* TextureManager.m in Sources */,
+				46696F331594CDAA00D5C8F2 /* OGL2Renderer.m in Sources */,
+				46696F371594D0B200D5C8F2 /* RenderTarget.m in Sources */,
+				46696F3A1594D3A800D5C8F2 /* UtilMatrix.m in Sources */,
+				46696F3D1594DC9000D5C8F2 /* RenderProgram.m in Sources */,
+				46696F401594E10200D5C8F2 /* RenderPolygon.m in Sources */,
+				46696F431594E22A00D5C8F2 /* RenderTexture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

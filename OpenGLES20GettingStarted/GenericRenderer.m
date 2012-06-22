@@ -9,6 +9,7 @@
 #import "GenericRenderer.h"
 #import "GLView.h"
 #import "OGL11Renderer.h"
+#import "OGL2Renderer.h"
 
 @implementation GenericRenderer
 
@@ -17,7 +18,8 @@
     if (self) {
         CGRect frame = [[UIScreen mainScreen] bounds];        
         mView = [[GLView alloc] initWithFrame:frame];
-        mConsumer = [[OGL11Renderer alloc] initWithLayer:mView.layer];
+        //mConsumer = [[OGL11Renderer alloc] initWithLayer:mView.layer];
+        mConsumer = [[OGL2Renderer alloc] initWithLayer:mView.layer];
     }
     
     return self;
