@@ -24,6 +24,7 @@
 
 -(id) initWithLayer:(CALayer*) layer;
 -(void) polygonRender:(PrimativeBuffer*) buffer;
+-(void) textureRender:(PrimativeBuffer*) buffer;
 -(void) copyToBuffer;
 
 @end

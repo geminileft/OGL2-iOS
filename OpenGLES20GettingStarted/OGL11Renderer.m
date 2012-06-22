@@ -9,6 +9,7 @@
 #import "OGL11Renderer.h"
 #import "RenderTypes.h"
 #import "PrimativeBuffer.h"
+#import "TextureManager.h"
 
 #import <QuartzCore/QuartzCore.h>
 #include <OpenGLES/ES1/gl.h>
@@ -58,7 +59,6 @@
         
         //required for vertex/textures
         glEnableClientState(GL_VERTEX_ARRAY);
-        //glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         
         glViewport(0, 0, mWidth, mHeight);
         
@@ -81,7 +81,6 @@
         CADisplayLink *aDisplayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(run)];
         [aDisplayLink setFrameInterval:1];
         [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-        [mProvider renderInitialized];
         mBackBuffer = [[PrimativeBuffer alloc] init];
         mPrimBuffer = [[NSMutableDictionary alloc] init];
 		[mPrimBuffer setValue:[[PrimativeBuffer alloc] init] forKey:@"polygon"];
@@ -92,13 +91,13 @@
 }
 
 -(void) run {
-    //TextureManager texMgr = TextureManager.sharedManager();
-    //texMgr.loadTextures();
+    //TextureManager* texMgr = [TextureManager sharedManager];
+    //[texMgr loadTextures];
     [self copyToBuffer];
     
     glClear(GL_COLOR_BUFFER_BIT);
-    //textureRender(gl, mPrimBuffer.get(PrimativeType.TexPrimative));
-    [self polygonRender:[mPrimBuffer objectForKey:@"polygon"]];
+    [self textureRender:[mPrimBuffer objectForKey:@"texture"]];
+    //[self polygonRender:[mPrimBuffer objectForKey:@"polygon"]];
 
     [mContext presentRenderbuffer:GL_RENDERBUFFER];
 }
@@ -113,10 +112,30 @@
         glPushMatrix();
         glTranslatef(primative.mX, primative.mY, 0.0f);
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-        glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
         glPopMatrix();
     }
 }
+
+-(void) textureRender:(PrimativeBuffer*) buffer {
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glEnable(GL_TEXTURE_2D);
+    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+    const int size = buffer->mTop;
+    for (int i = 0;i < size;++i) {
+        RenderPrimative primative = [buffer get:i];
+        glVertexPointer(2, GL_FLOAT, 0, primative.mVertexBuffer);
+        glTexCoordPointer(2, GL_FLOAT, 0, primative.mTextureBuffer);
+        glBindTexture(GL_TEXTURE_2D, primative.mTextureName);
+        
+        glPushMatrix();
+        glTranslatef(primative.mX, primative.mY, 0.0f);
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+        glPopMatrix();
+    }
+    glDisable(GL_TEXTURE_2D);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+}
+
 
 /*
 -(void) polygonRender {
@@ -147,7 +166,7 @@
 
 -(void) setRenderProvider:(id<RenderProvider>) provider {
     mProvider = [provider retain];
-    [mProvider renderInitialized];
+    [mProvider renderInitialized:mContext];
 }
 
 -(void) copyToBuffer {

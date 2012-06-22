@@ -6,8 +6,11 @@
 @interface GenericProvider : NSObject<RenderProvider> {
 @private
     RenderPrimative mPolyPrimative;
+    RenderPrimative mTexPrimative;
     PrimativeBuffer* mCopyBuffer;
 	PrimativeBuffer* mPrimatives;
+    EAGLContext* mSaveContext;
+    EAGLContext* mContext;
 }
 
 -(void) initialize;

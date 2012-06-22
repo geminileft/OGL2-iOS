@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4666F63B1594422900ECBFD3 /* TextureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4666F63A1594422900ECBFD3 /* TextureManager.m */; };
+		4666F63D1594449500ECBFD3 /* mg.png in Resources */ = {isa = PBXBuildFile; fileRef = 4666F63C1594449500ECBFD3 /* mg.png */; };
 		46E377871593E0F90027D0E5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E377861593E0F90027D0E5 /* UIKit.framework */; };
 		46E377891593E0F90027D0E5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E377881593E0F90027D0E5 /* Foundation.framework */; };
 		46E3778B1593E0F90027D0E5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46E3778A1593E0F90027D0E5 /* CoreGraphics.framework */; };
@@ -23,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4666F6391594422900ECBFD3 /* TextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureManager.h; sourceTree = "<group>"; };
+		4666F63A1594422900ECBFD3 /* TextureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextureManager.m; sourceTree = "<group>"; };
+		4666F63C1594449500ECBFD3 /* mg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mg.png; sourceTree = "<group>"; };
 		46E377821593E0F90027D0E5 /* OpenGLES20GettingStarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenGLES20GettingStarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E377861593E0F90027D0E5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		46E377881593E0F90027D0E5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -113,6 +118,8 @@
 				46E377AA1593F49E0027D0E5 /* RenderConsumer.h */,
 				46E377AB1593FA590027D0E5 /* RenderProvider.h */,
 				46E377AF159405690027D0E5 /* RenderTypes.h */,
+				4666F6391594422900ECBFD3 /* TextureManager.h */,
+				4666F63A1594422900ECBFD3 /* TextureManager.m */,
 				46E3778D1593E0F90027D0E5 /* Supporting Files */,
 			);
 			path = OpenGLES20GettingStarted;
@@ -121,6 +128,7 @@
 		46E3778D1593E0F90027D0E5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				4666F63C1594449500ECBFD3 /* mg.png */,
 				46E3778E1593E0F90027D0E5 /* OpenGLES20GettingStarted-Info.plist */,
 				46E3778F1593E0F90027D0E5 /* InfoPlist.strings */,
 				46E377921593E0F90027D0E5 /* main.m */,
@@ -180,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46E377911593E0F90027D0E5 /* InfoPlist.strings in Resources */,
+				4666F63D1594449500ECBFD3 /* mg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +206,7 @@
 				46E377A91593F4570027D0E5 /* OGL11Renderer.m in Sources */,
 				46E377AE1593FAC70027D0E5 /* GenericProvider.m in Sources */,
 				46E377B215940FD60027D0E5 /* PrimativeBuffer.m in Sources */,
+				4666F63B1594422900ECBFD3 /* TextureManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

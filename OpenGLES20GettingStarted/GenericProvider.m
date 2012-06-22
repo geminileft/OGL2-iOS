@@ -1,27 +1,35 @@
 #import "GenericProvider.h"
 #import "PrimativeBuffer.h"
+#import "TextureManager.h"
 
 @implementation GenericProvider
 
 -(void) initialize {
-/*
-    mTexPrimative = new RenderPrimative();
-    TextureManager texMgr = TextureManager.sharedManager();
-    mTexPrimative.mTextureName = texMgr.resourceTexture(R.drawable.mg, mTexPrimative);
-    
-    final float coordinates[] = {    		
+    mContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1 sharegroup:mSaveContext.sharegroup];
+    if (!mContext) {
+        NSLog(@"Failed to create ES context");
+    }
+    else if (![EAGLContext setCurrentContext:mContext]) {
+        NSLog(@"Failed to set ES context current");
+    }
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    [mSaveContext release];
+    const float coordinates[] = {    		
         0.0f, 1.0f,
         0.0f, 0.0f,
         1.0f, 1.0f,
         1.0f, 0.0f
     };
-    ByteBuffer byteBuf = ByteBuffer.allocateDirect(coordinates.length * 4);
-    byteBuf.order(ByteOrder.nativeOrder());
-    mTexPrimative.mTextureBuffer = byteBuf.asFloatBuffer();
-    mTexPrimative.mTextureBuffer.put(coordinates);
-    mTexPrimative.mTextureBuffer.position(0);
     
- */
+    size_t size;
+    size = 8 * sizeof(float);
+    mTexPrimative.mTextureBuffer = malloc(size);
+    //TextureManager* texMgr = [TextureManager sharedManager];
+    //mTexPrimative.mTextureName = [texMgr resourceTexture:@"mg.png" forPrimative:mTexPrimative];
+    UIImage* image = [UIImage imageNamed:@"mg.png"];
+    mTexPrimative.mTextureName = [TextureManager GLUtexImage2D:[image CGImage]];
+    memcpy(mTexPrimative.mTextureBuffer, &coordinates[0], size);
 
     const int width = 160;
     const int height = 160;
@@ -37,7 +45,13 @@
         , rightX, topY
     };
     
-    const size_t size = sizeof(float) * 8;
+
+    mTexPrimative.mVertexBuffer = malloc(size);
+    memcpy(mTexPrimative.mVertexBuffer, &vertices[0], size);
+    
+    mTexPrimative.mX = -80.0f;
+    mTexPrimative.mY = 0.0f;
+
     mPolyPrimative.mVertexBuffer = malloc(size);
     memcpy(mPolyPrimative.mVertexBuffer, &vertices[0], size);
     mPolyPrimative.mTextureBuffer = NULL;
@@ -71,7 +85,7 @@
 }
 
 -(void) frame {
-    //mPrimatives->add(mTexPrimative);
+    [mPrimatives add:mTexPrimative];
     [mPrimatives add:mPolyPrimative];
 }
 
@@ -87,9 +101,10 @@
     }
 }
 
--(void) renderInitialized {
+-(void) renderInitialized:(EAGLContext*) context {
     NSThread* thread = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
     [thread start];
+    mSaveContext = [context retain];
 }
 
 @end

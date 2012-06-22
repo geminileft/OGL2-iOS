@@ -34,4 +34,13 @@ enum PrimativeType {
 
 typedef enum PrimativeType PrimativeType;
 
+enum Texture2DPixelFormat {
+    kTexture2DPixelFormat_Automatic = 0,
+    kTexture2DPixelFormat_RGBA8888,
+    kTexture2DPixelFormat_RGB565,
+    kTexture2DPixelFormat_A8,
+};
+
+typedef enum Texture2DPixelFormat Texture2DPixelFormat;
+
 #endif
