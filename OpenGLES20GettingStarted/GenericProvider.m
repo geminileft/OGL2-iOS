@@ -5,16 +5,8 @@
 @implementation GenericProvider
 
 -(void) initialize {
-    mContext = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES1 sharegroup:mSaveContext.sharegroup];
-    if (!mContext) {
-        NSLog(@"Failed to create ES context");
-    }
-    else if (![EAGLContext setCurrentContext:mContext]) {
-        NSLog(@"Failed to set ES context current");
-    }
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    [mSaveContext release];
     const float coordinates[] = {    		
         0.0f, 1.0f,
         0.0f, 0.0f,
@@ -25,10 +17,8 @@
     size_t size;
     size = 8 * sizeof(float);
     mTexPrimative.mTextureBuffer = malloc(size);
-    //TextureManager* texMgr = [TextureManager sharedManager];
-    //mTexPrimative.mTextureName = [texMgr resourceTexture:@"mg.png" forPrimative:mTexPrimative];
-    UIImage* image = [UIImage imageNamed:@"mg.png"];
-    mTexPrimative.mTextureName = [TextureManager GLUtexImage2D:[image CGImage]];
+    TextureManager* texMgr = [TextureManager sharedManager];
+    mTexPrimative.mTextureName = [texMgr resourceTexture:@"mg.png"];
     memcpy(mTexPrimative.mTextureBuffer, &coordinates[0], size);
 
     const int width = 160;
@@ -44,7 +34,6 @@
         , rightX, bottomY
         , rightX, topY
     };
-    
 
     mTexPrimative.mVertexBuffer = malloc(size);
     memcpy(mTexPrimative.mVertexBuffer, &vertices[0], size);
@@ -67,6 +56,7 @@
 }
 
 -(void) run {
+    [EAGLContext setCurrentContext:mContext];
     [self initialize];
     while (true) {
         mPrimatives->mTop = 0;
@@ -104,7 +94,7 @@
 -(void) renderInitialized:(EAGLContext*) context {
     NSThread* thread = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
     [thread start];
-    mSaveContext = [context retain];
+    mContext = [context retain];
 }
 
 @end

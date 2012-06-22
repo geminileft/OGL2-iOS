@@ -104,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				46E3778C1593E0F90027D0E5 /* OpenGLES20GettingStarted */,
+				46E3778D1593E0F90027D0E5 /* Supporting Files */,
 				46E377851593E0F90027D0E5 /* Frameworks */,
 				46E377831593E0F90027D0E5 /* Products */,
 			);
@@ -140,30 +141,29 @@
 				46E3779E1593E2170027D0E5 /* GenericRenderer.m */,
 				46E377A01593E2D80027D0E5 /* GLView.h */,
 				46E377A11593E2D80027D0E5 /* GLView.m */,
+				46696F441594E3C900D5C8F2 /* ManagerFile.h */,
+				46696F451594E3C900D5C8F2 /* ManagerFile.m */,
 				46E377A71593F4570027D0E5 /* OGL11Renderer.h */,
 				46E377A81593F4570027D0E5 /* OGL11Renderer.m */,
+				46696F311594CDAA00D5C8F2 /* OGL2Renderer.h */,
+				46696F321594CDAA00D5C8F2 /* OGL2Renderer.m */,
 				46E377B015940FD60027D0E5 /* PrimativeBuffer.h */,
 				46E377B115940FD60027D0E5 /* PrimativeBuffer.m */,
 				46E377AA1593F49E0027D0E5 /* RenderConsumer.h */,
+				46696F3E1594E10200D5C8F2 /* RenderPolygon.h */,
+				46696F3F1594E10200D5C8F2 /* RenderPolygon.m */,
+				46696F3B1594DC9000D5C8F2 /* RenderProgram.h */,
+				46696F3C1594DC9000D5C8F2 /* RenderProgram.m */,
 				46E377AB1593FA590027D0E5 /* RenderProvider.h */,
+				46696F351594D0B200D5C8F2 /* RenderTarget.h */,
+				46696F361594D0B200D5C8F2 /* RenderTarget.m */,
+				46696F411594E22A00D5C8F2 /* RenderTexture.h */,
+				46696F421594E22A00D5C8F2 /* RenderTexture.m */,
 				46E377AF159405690027D0E5 /* RenderTypes.h */,
 				4666F6391594422900ECBFD3 /* TextureManager.h */,
 				4666F63A1594422900ECBFD3 /* TextureManager.m */,
-				46696F311594CDAA00D5C8F2 /* OGL2Renderer.h */,
-				46696F321594CDAA00D5C8F2 /* OGL2Renderer.m */,
-				46696F351594D0B200D5C8F2 /* RenderTarget.h */,
-				46696F361594D0B200D5C8F2 /* RenderTarget.m */,
 				46696F381594D3A700D5C8F2 /* UtilMatrix.h */,
 				46696F391594D3A700D5C8F2 /* UtilMatrix.m */,
-				46696F3B1594DC9000D5C8F2 /* RenderProgram.h */,
-				46696F3C1594DC9000D5C8F2 /* RenderProgram.m */,
-				46696F3E1594E10200D5C8F2 /* RenderPolygon.h */,
-				46696F3F1594E10200D5C8F2 /* RenderPolygon.m */,
-				46E3778D1593E0F90027D0E5 /* Supporting Files */,
-				46696F411594E22A00D5C8F2 /* RenderTexture.h */,
-				46696F421594E22A00D5C8F2 /* RenderTexture.m */,
-				46696F441594E3C900D5C8F2 /* ManagerFile.h */,
-				46696F451594E3C900D5C8F2 /* ManagerFile.m */,
 			);
 			path = OpenGLES20GettingStarted;
 			sourceTree = "<group>";
@@ -182,6 +182,7 @@
 				46E377941593E0F90027D0E5 /* OpenGLES20GettingStarted-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = OpenGLES20GettingStarted;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

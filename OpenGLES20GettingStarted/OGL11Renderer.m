@@ -78,13 +78,17 @@
             glTranslatef(0.0f, 0.0f, -zDepth);
         }
         
-        CADisplayLink *aDisplayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(run)];
-        [aDisplayLink setFrameInterval:1];
-        [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+        TextureManager* texMgr = [TextureManager sharedManager];
+        [texMgr loadTextures];
+        
         mBackBuffer = [[PrimativeBuffer alloc] init];
         mPrimBuffer = [[NSMutableDictionary alloc] init];
 		[mPrimBuffer setValue:[[PrimativeBuffer alloc] init] forKey:@"polygon"];
 		[mPrimBuffer setValue:[[PrimativeBuffer alloc] init] forKey:@"texture"];
+
+        CADisplayLink *aDisplayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(run)];
+        [aDisplayLink setFrameInterval:1];
+        [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
     }
     
     return self;
@@ -135,34 +139,6 @@
     glDisable(GL_TEXTURE_2D);
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
-
-
-/*
--(void) polygonRender {
-    const int width = 160;
-    const int height = 160;
-    const float leftX = -(float)width / 2;
-    const float rightX = leftX + width;
-    const float bottomY = -(float)height / 2;
-    const float topY = bottomY + height;
-    
-    const float vertices[] = {
-        leftX, bottomY
-        , leftX, topY
-        , rightX, bottomY
-        , rightX, topY
-    };
-    
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glVertexPointer(2, GL_FLOAT, 0, &vertices[0]);
-    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-    
-    glPushMatrix();
-    glTranslatef(0.0f, 0.0f, 0.0f);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    glPopMatrix();
-}
-*/
 
 -(void) setRenderProvider:(id<RenderProvider>) provider {
     mProvider = [provider retain];

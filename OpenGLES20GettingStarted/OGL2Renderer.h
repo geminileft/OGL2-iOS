@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "RenderConsumer.h"
 #import "RenderProvider.h"
+#import "RenderTypes.h"
 
 @class RenderTarget;
 
@@ -28,8 +29,6 @@
 }
 
 -(id) initWithLayer:(CALayer*) layer;
--(void) polygonRender:(PrimativeBuffer*) buffer;
--(void) textureRender:(PrimativeBuffer*) buffer;
 -(void) copyToBuffer;
 -(void) createPrograms;
 -(void) runTargetShaders:(RenderTarget*) target;

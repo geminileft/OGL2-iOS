@@ -19,8 +19,9 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    CGRect frame = [[UIScreen mainScreen] bounds];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
     
+    CGRect frame = [[UIScreen mainScreen] bounds];
     mWindow = [[UIWindow alloc] initWithFrame:frame];
     UIViewController* vc = [[UIViewController alloc] init];
     mRenderer = [[GenericRenderer alloc] init];

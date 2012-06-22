@@ -9,7 +9,6 @@
     RenderPrimative mTexPrimative;
     PrimativeBuffer* mCopyBuffer;
 	PrimativeBuffer* mPrimatives;
-    EAGLContext* mSaveContext;
     EAGLContext* mContext;
 }
 

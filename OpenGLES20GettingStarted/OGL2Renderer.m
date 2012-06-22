@@ -63,6 +63,10 @@
         mShaderPrograms = [[NSMutableDictionary alloc] init];
         
         [self createPrograms];
+        
+        TextureManager* texMgr = [TextureManager sharedManager];
+        [texMgr loadTextures];
+
         CADisplayLink *aDisplayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(run)];
         [aDisplayLink setFrameInterval:1];
         [aDisplayLink addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
@@ -72,8 +76,6 @@
 }
 
 -(void) run {
-    //TextureManager* texMgr = [TextureManager sharedManager];
-    //[texMgr loadTextures];
     [self copyToBuffer];
     
     RenderTarget* rt;    
@@ -105,43 +107,10 @@
     }
 }
 
--(void) polygonRender:(PrimativeBuffer*) buffer {
-    const int size = buffer->mTop;
-    for (int i = 0;i < size;++i) {
-        RenderPrimative primative = [buffer get:i];
-        glVertexPointer(2, GL_FLOAT, 0, primative.mVertexBuffer);
-        glColor4f(primative.mR, primative.mG, primative.mB, primative.mA);
-        
-        glPushMatrix();
-        glTranslatef(primative.mX, primative.mY, 0.0f);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-        glPopMatrix();
-    }
-}
-
--(void) textureRender:(PrimativeBuffer*) buffer {
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    glEnable(GL_TEXTURE_2D);
-    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-    const int size = buffer->mTop;
-    for (int i = 0;i < size;++i) {
-        RenderPrimative primative = [buffer get:i];
-        glVertexPointer(2, GL_FLOAT, 0, primative.mVertexBuffer);
-        glTexCoordPointer(2, GL_FLOAT, 0, primative.mTextureBuffer);
-        glBindTexture(GL_TEXTURE_2D, primative.mTextureName);
-        
-        glPushMatrix();
-        glTranslatef(primative.mX, primative.mY, 0.0f);
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-        glPopMatrix();
-    }
-    glDisable(GL_TEXTURE_2D);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-}
-
 -(void) setRenderProvider:(id<RenderProvider>) provider {
     mProvider = [provider retain];
-    [mProvider renderInitialized:mContext];
+    EAGLContext* context = [[EAGLContext alloc] initWithAPI:[mContext API] sharegroup:mContext.sharegroup];
+    [mProvider renderInitialized:context];
 }
 
 -(void) copyToBuffer {
@@ -165,6 +134,7 @@
                 [((PrimativeBuffer*)[mPrimBuffer objectForKey:ptype]) add:primative];
             }
         }
+        //[((PrimativeBuffer*)[mPrimBuffer objectForKey:@"texture"]) add:mTexPrimative];
     }
 }
 

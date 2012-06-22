@@ -24,6 +24,6 @@
 +(int) closestPowerOf2:(int) n;
 +(unsigned int) GLUtexImage2D:(CGImageRef) cgImage;
 -(void) loadTextures;
--(unsigned int) resourceTexture:(NSString*) resourceName forPrimative:(RenderPrimative) primative;
+-(unsigned int) resourceTexture:(NSString*) resourceName;
 
 @end

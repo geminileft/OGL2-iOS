@@ -135,42 +135,22 @@ static TextureManager* mSharedManager = nil;
     return c;
 }
 
--(unsigned int) resourceTexture:(NSString*) resourceName forPrimative:(RenderPrimative) primative {
+-(unsigned int) resourceTexture:(NSString*) resourceName {
     int textureId = 0;
-    if (![mTextures objectForKey:resourceName]) {
-        @synchronized(mTexturePrimatives) {
-            PrimativeBuffer* pb = [mTexturePrimatives objectForKey:resourceName];
-            if (pb) {
-                [pb add:primative];
-            } else {
-                pb = [[PrimativeBuffer alloc] init];
-                [pb add:primative];
-                [mTexturePrimatives setObject:pb forKey:resourceName];
-            }
-        }
-    } else {
+    if ([mTextures objectForKey:resourceName] != nil) {
         textureId = [(NSNumber*)[mTextures objectForKey:resourceName] unsignedIntValue];
     }
     return textureId;
 }
 
 -(void) loadTextures {
-    @synchronized(mTexturePrimatives) {
-        if ([mTexturePrimatives count] > 0) {
-            NSArray* keys = [mTexturePrimatives allKeys];
-            for (NSString* key in keys) {
-            //for (Integer key : keyset) {
-                UIImage* image = [UIImage imageNamed:key];
-                unsigned int textureId = [TextureManager GLUtexImage2D:[image CGImage]];
-                [mTextures setObject:[NSNumber numberWithUnsignedInt:textureId] forKey:key];
-                PrimativeBuffer* primatives = [mTexturePrimatives objectForKey:key];
-                for (int i = 0;i < primatives->mTop;++i) {
-                    RenderPrimative primative = [primatives get:i];
-                    primative.mTextureName = textureId;
-                }
-            }
-            [mTexturePrimatives removeAllObjects];
-        }
+    NSMutableArray* array = [[NSMutableArray alloc] init];
+    [array addObject:@"mg.png"];
+    
+    for (NSString* resourceName in array) {
+        UIImage* image = [UIImage imageNamed:resourceName];
+        unsigned int textureId = [TextureManager GLUtexImage2D:[image CGImage]];
+        [mTextures setObject:[NSNumber numberWithUnsignedInt:textureId] forKey:resourceName];
     }
 }
 
